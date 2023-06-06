@@ -1,0 +1,40 @@
+
+<!-- https://makitweb.com/upload-file-with-angularjs-and-php/ -->
+
+
+
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script> -->
+
+
+    <form ng-controller="userCtrl" name="proForm" novalidate>
+
+		  
+Product Name : <input name="proName" ng-model="proName" /><br/>
+
+<span style = "color:red" ng-show = "proForm.proName.$dirty && proName.proForm.$invalid">  
+    <span ng-show = "proName.proForm.$error.required">First Name is required.</span>  </span>
+<br/>
+
+Product Price : <input id="proPrice"  name="proPrice" ng-model="proPrice"/><br/>
+
+<div style="color:red"> {{proPrice_msg}} </div> <br/>
+
+Product Qty : <input name="proQty" ng-model="proQty" /><br/>
+
+<div style="color:red"> {{proQty_msg}} <br/><br/>
+     
+    
+     <input type='file' name='file' id='file' ng-file='uploadfiles'><br/>
+     <input type='button' value='Upload' id='upload' ng-click='upload(proName,proPrice,proQty)' >
+     
+     <p>{{ response.name }}</p>
+    </div>
+</form>
+
+
+<script>
+
+
+
+</script>

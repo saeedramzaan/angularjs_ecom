@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>  
+<body>
+
+<h2>Validation Example</h2>
+
+<form ng-app="myApp" ng-controller="userCtrl" 
+name="proForm" novalidate>
+
+<p>Product Name<br>
+<input type="text" name="proName" ng-model="proName" required>
+<div style="color:red">{{ proName_msg }}</div>
+<span style="color:red" ng-show="proForm.proName.$dirty && proForm.proName.$invalid">
+<span ng-show="proForm.proName.$error.required">Product Name is required.</span>
+
+</span>
+</p>
+<br>
+
+<p>Product Price<br>
+<input type="text" name="proPrice" ng-model="proPrice" required>
+<div style="color:red">{{ proPrice_msg }}</div>
+<span style="color:red" ng-show="proForm.proPrice.$dirty && proForm.proPrice.$invalid">
+<span ng-show="proForm.proPrice.$error.required">Product Price is required.</span>
+<!-- <span ng-show="myForm.email.$error.email">Invalid email address.</span> -->
+
+</span>
+<br>
+
+<p>Product Qty<br>
+   <input type="text" name="proQty" ng-model="proQty" required>
+   <div style="color:red">{{ proQty_msg }}</div>
+   <span style="color:red" ng-show="proForm.proQty.$dirty && proForm.proQty.$invalid">
+   <span ng-show="proForm.proQty.$error.required">Product Quantity is required.</span>
+   <!-- <span ng-show="myForm.email.$error.email">Invalid email address.</span> -->
+</span>
+
+</p>
+
+<select ng-model="selectedName" ng-options="x.cat_name for x in names" value="x.cat_name">
+</select>
+
+<h6>Category Name: {{selectedName.cat_name}} </h6>  
+<h6>Category ID: {{selectedName.id}} </h6> 
+<br>
+<p>
+
+   <input type='file' name='file' id='file' ng-file='uploadfiles'><br/>
+   <div style="color:red">{{ img_msg }}</div>
+   <!-- <input type='button' value='Upload' id='upload' ng-click='upload(proName,proPrice,proQty)' >
+        -->
+   
+
+<input type="submit"
+ng-disabled="proForm.proName.$dirty && proForm.proName.$invalid ||  
+proForm.proPrice.$dirty && proForm.proPrice.$invalid || proForm.proQty.$dirty && proForm.proQty.$invalid" ng-click='upload(proName,proPrice,proQty)'>
+
+
+
+</form>
+
+<script>
+var app = angular.module('myApp', []);
+
+
+
+
+
+</script>
+
+</body>
+</html>

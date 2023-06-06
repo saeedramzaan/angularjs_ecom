@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <title>How to Delete a Row from Table using AngularJS?</title>
+   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+
+<body ng-app="myApp" ng-controller="myCtrl">
+   <h4>How to Delete a Row from Table using AngularJS?</h4>
+   <table>
+      <thead>
+         <tr>
+
+            Search: <input type="text" ng-keydown="getkeys($event)" ng-model="firstName"><br>
+           
+            Search table: <input type="text" ng-model="txtSearch"><br>
+           
+            <th>Name</th>
+            <th>Age</th>
+            <th>Country</th>
+            <th></th>
+         </tr>
+      </thead>
+      <tbody>
+
+         <tr ng-repeat="c in cat  | filter:txtSearch">
+            <td>{{ c.id }}</td>
+            <td>{{ c.pname }}</td>
+            <td>{{ c.category }}</td>
+
+            <!-- <td><button ng-click="deleteRow(1)">Delete</button></td> -->
+            <td> <button class='btn btn-danger' ng-click="deleteRow($index)">Delete</button> </td>
+            <td><button type="submit" ng-click="update(user)" value="Save" />Update</button> </td>
+         </tr>
+      </tbody>
+   </table>
+   <script>
+
+      let app = angular.module('myApp', []);
+
+
+      app.controller('myCtrl', function ($scope, $http) {
+
+         $scope.cat = []
+
+         $scope.firstName = "";
+
+         $scope.getkeys = function (event) {
+
+            $scope.keyval = event.key;
+
+
+            var data = {
+               keyword: $scope.firstName,
+            };
+
+
+            $http.post('http://localhost:8000/api/displayPro', JSON.stringify(data)).then(function (response) {
+
+
+               if (response.data)
+
+                  $scope.cat = response.data;
+
+               console.log(response.data);
+
+               $scope.msg = "Post Data Submitted Successfully!";
+
+            }, function (response) {
+
+
+            });
+
+            //  console.log($scope.keyval);
+
+         }
+
+
+
+
+
+
+         console.log(JSON.stringify($scope.count));
+
+
+         $http.get('http://localhost:8000/api/displayAll').then(function (response) {
+
+            console.log(response.data);
+
+            if (response.data)
+
+
+
+               $scope.cat = response.data;
+
+            var data = {
+               id: '1',
+            };
+
+            $scope.deleteRow = function (index) {
+
+
+               var confrimDelete = confirm('Are you sure want to delete this');
+               
+               if(confrimDelete){
+
+                  $scope.cat.splice(index, 1);
+
+               //Call the services
+               $http.post('http://localhost:8000/api/delete', JSON.stringify(data)).then(function (response) {
+
+
+                  if (response.data)
+
+                     console.log(response.data);
+
+                  $scope.msg = "Post Data Deleted Successfully!";
+
+               }, function (response) {
+
+               });
+
+               }else{
+                  return false;
+               }
+
+             
+
+            };
+
+
+         }, function (response) {
+
+
+
+         });
+
+         $scope.update = function (user) {
+            //   $scope.master = angular.copy(user);
+
+         };
+
+         // $scope.people = [
+
+         // { name: 'John', age: 25, country: 'USA' },
+         // { name: 'Jane', age: 30, country: 'Canada' },
+         // { name: 'Bob', age: 40, country: 'Australia' },
+         // { name: 'Alice', age: 35, country: 'UK' },
+
+         // ];
+
+      });
+   </script>
+</body>
+
+</html>

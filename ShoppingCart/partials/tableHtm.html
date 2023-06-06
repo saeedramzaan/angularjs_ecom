@@ -1,0 +1,53 @@
+
+<!-- https://www.tutorialspoint.com/how-to-delete-a-row-from-table-using-angularjs -->
+
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>How to Delete a Row from Table using AngularJS?</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+   </head>
+   <body ng-app="myApp" ng-controller="myCtrl">
+      <h4>How to Delete a Row from Table using AngularJS?</h4>
+
+      <table>
+         <thead>
+            <tr>
+               <th>Name</th>
+               <th>Age</th>
+               <th>Country</th>
+               <th></th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr ng-repeat="person in people">
+               <td>{{ person.name }}</td>
+               <td>{{ person.age }}</td>
+               <td>{{ person.country }}</td>
+               <td><button ng-click="deleteRow(person)">Delete</button></td>
+            </tr>
+         </tbody>
+      </table>
+
+      <script>
+         let app = angular.module('myApp', []);
+         
+         app.controller('myCtrl', function ($scope) {
+            $scope.people = [
+               { name: 'John', age: 25, country: 'USA' },
+               { name: 'Jane', age: 30, country: 'Canada' },
+               { name: 'Bob', age: 40, country: 'Australia' },
+               { name: 'Alice', age: 35, country: 'UK' }
+            ];
+
+            $scope.deleteRow = function (person) {
+               let index = $scope.people.indexOf(person);
+               $scope.people.splice(index, 1);
+            };
+         });
+      </script>
+      
+   </body>
+</html>
+
+

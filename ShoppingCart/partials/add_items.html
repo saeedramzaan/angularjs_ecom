@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>
+Add Product
+</title>
+
+
+</head>
+<body>
+<h2>Add Product</h2>
+
+<div ng-controller="productCtrl">
+
+<div>
+  
+Product Name : <input ng-model="proName" /><br/>
+<div style="color:red"> {{proName_msg}} </div>
+<br/>
+
+Product Price : <input ng-model="proPrice"/><br/>
+
+<div style="color:red"> {{proPrice_msg}} </div> <br/>
+
+Product Qty : <input ng-model="proQty" /><br/>
+
+<div style="color:red"> {{proQty_msg}} <br/><br/>
+  
+<input type="button" value="Send" ng-click="postdata(proName, proPrice, proQty,imageSrc)" /> <br/><br/>
+</div>
+
+
+</div>
+
+</body>
+</html>

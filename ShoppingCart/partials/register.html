@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>
+AngularJs $http.post() Service Method Example
+</title>
+
+
+</head>
+<body>
+<h2>AngularJS Http Post Method Example</h2>
+
+<div ng-app="postserviceApp" ng-controller="postserviceCtrl">
+
+<div>
+  
+Name : <input ng-model="username" /><br/>
+<div style="color:red"> {{user_msg}} </div>
+<br/>
+
+Email : <input ng-model="email" /><br/>
+
+<div style="color:red"> {{email_msg}} </div> <br/>
+
+Password : <input ng-model="password" /><br/>
+
+<div style="color:red"> {{password_msg}} <br/><br/>
+<input type="button" value="Send" ng-click="postdata(username, email, password)" /> <br/><br/>
+</div>
+
+
+<p>Output Message : {{msg}}</p>
+<p>StatusCode: {{statusval}}</p>
+<p>Status: {{statustext}}</p>
+<p>Response Headers: {{headers}}</p>
+
+</div>
+
+</body>
+</html>

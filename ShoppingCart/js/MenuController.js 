@@ -1,0 +1,4 @@
+
+app.controller('mycontrollermenu',function($scope){
+$scope.firstname = "Menu 1";        
+ });
